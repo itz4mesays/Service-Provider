@@ -1,0 +1,35 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 30
+    },
+    "auditLog": "/Users/sfteam/Documents/nodeApps/Service Provider/src/logs/.49814e2702ce5c5a2c4799a1016873de7f23dd5f-audit.json",
+    "files": [
+        {
+            "date": 1742755357965,
+            "name": "/Users/sfteam/Documents/nodeApps/Service Provider/src/logs/app-log-2025-03-23.txt",
+            "hash": "d9012226171b8ac7ac8986d0c8760eb794e0d64c73598018dd14263db39b1064"
+        },
+        {
+            "date": 1742776402792,
+            "name": "/Users/sfteam/Documents/nodeApps/Service Provider/src/logs/app-log-2025-03-24.txt",
+            "hash": "f8d458564f97f88f9c183cf119a8483ae7f1d69e21e12d707950aebae6d612b6"
+        },
+        {
+            "date": 1742872032603,
+            "name": "/Users/sfteam/Documents/nodeApps/Service Provider/src/logs/app-log-2025-03-25.txt",
+            "hash": "40673e21e47e09b2b9b83c44e0d899d20b03e56e5c38d3c150d32feaaed4fbdc"
+        },
+        {
+            "date": 1743030143758,
+            "name": "/Users/sfteam/Documents/nodeApps/Service Provider/src/logs/app-log-2025-03-27.txt",
+            "hash": "9365001173760d22f88d348080c04cc5594b48319d15c812ad97a5063cb9c868"
+        },
+        {
+            "date": 1743118286277,
+            "name": "/Users/sfteam/Documents/nodeApps/Service Provider/src/logs/app-log-2025-03-28.txt",
+            "hash": "4c064d6f192c416f465220ae7eb5b91f999f383e03af30127196585b173e8d09"
+        }
+    ],
+    "hashType": "sha256"
+}
