@@ -3,24 +3,49 @@ dotenv.config()
 import express, { Application, NextFunction, Request, Response } from 'express'
 import morgan from 'morgan'
 import cors from 'cors'
-import { successResponse } from './utils/responseHandler'
 import envVars from './validations/validateEnv'
 import { logger } from './utils/logger'
-import apiHeadersMiddleware from './utils/apiHeaders'
 import bodyParser from 'body-parser'
+import mainRoute from './routes/main.router'
+import session from 'express-session'; // Correct import
+import accountRoute from './routes/account.router'
 import swaggerUi from 'swagger-ui-express'
 import swaggerJsdoc from 'swagger-jsdoc'
-import { serviceProvider } from './saml/sp'
-import { IdentityProvider } from 'saml2-js'
-import fs from 'fs'
+import { RedisStore } from 'connect-redis';
+import { createClient } from 'redis';
+// import sessionMiddleware from './config/redisSessionStore'
 
 const app: Application = express();
 
-const identityProvider = new IdentityProvider({
-  sso_login_url: "http://localhost:4015/sso/login",
-  sso_logout_url: "http://localhost:4015/sso/logout",
-  certificates: [fs.readFileSync("./idp-cert.pem", "utf8")], // IdP Certificate
+// Initialize Redis client
+const redisClient = createClient({
+  url: 'redis://localhost:6379', // Your Redis URL
 });
+
+// Connect to Redis
+redisClient.connect().catch((err) => {
+  console.error('Error connecting to Redis:', err);
+});
+
+// Initialize session store using Redis
+const sessionStore = new RedisStore({
+  client: redisClient,
+  prefix: 'sess:', // Prefix for session keys
+});
+
+// Use session middleware - **MUST BE ADDED BEFORE ANY ROUTES THAT USE req.session**
+app.use(session({
+  store: sessionStore,
+  secret: envVars.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    httpOnly: true,
+    secure: false,  // Set to true if using HTTPS
+    sameSite: 'lax',
+    maxAge: 86400000,  // 1 day in ms
+  },
+}));
 
 // Define the list of allowed origins
 const allowedOrigins = [
@@ -50,83 +75,69 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(morgan('combined'));
 
+const swaggerOptions = {
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "Account Api Documentation",
+      version: "1.0.0",
+      description: "Account Management API documentation with Swagger",
+      license: {
+        name: "MIT",
+        url: "https://spdx.org/licenses/MIT.html",
+      },
+      contact: {
+        name: "Oyedele Olufemi",
+        email: "oyedele.phemy@gmail.com",
+      },
+    },
+    schemes: ['http', 'https'],
+    securitySchemes: {
+      bearerAuth: {
+        type: 'http',
+        in: 'header',
+        name: 'Authorization',
+        description: 'Bearer token to access these api endpoints',
+        scheme: 'bearer',
+        bearerFormat: 'JWT',
+      },
+    },
+    security: [
+      {
+        bearerAuth: [],
+      },
+    ],
+    servers: [
+      {
+        url: `http://localhost:${envVars.APP_PORT}`,
+        description: 'Local Server'
+      },
+    ],
+  },
+  apis: ['./src/routes/*.ts'], // Path to your API files
+};
+
+const swaggerSpecs = swaggerJsdoc(swaggerOptions);
+
+// Serve Swagger UI
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpecs, { explorer: true }));
+
 //logger
 logger;
 
 // Set the port, ensuring it’s a number or string
-const port: string | number = envVars.APP_PORT || 4014;
+const port: string | number = envVars.APP_PORT || 8001;
 
-// Define a basic route
-app.get('/', (req: Request, res: Response): Response => {
-  return successResponse(res, 200, {}, "Service Provider Service");
-});
-
-app.get('/sso/login', (req: Request, res: Response) => {
-  serviceProvider.create_login_request_url(identityProvider, {}, (err, login_url) => {
-    if (err) {
-      console.error("Error creating login request URL:", err);
-      return res.status(500).json({ error: "Failed to create login request" });
-    }
-    console.log("Redirecting to IdP login URL:", login_url);
-    res.redirect(login_url);
+app.get('/session-debug', (req: Request, res: Response) => {
+  res.json({
+    session: req.session,
   });
 });
 
-// Logout endpoint
-// app.get('/logout', (req: Request, res: Response) => {
-//   const user = req.user; // Assuming you store the user in the session
+//define routes
+app.use('/saml', mainRoute)
+app.use('/api/v1/account', accountRoute)
 
-//   if (!user) {
-//     return res.status(400).json({ error: 'No user session found' });
-//   }
-
-//   // Create a LogoutRequest
-//   serviceProvider.create_logout_request_url(
-//     identityProvider,
-//     {
-//       name_id: user.name_id, // NameID of the user
-//       session_index: user.session_index, // Session index (if available)
-//     },
-//     (err, logoutUrl) => {
-//       if (err) {
-//         console.error('Error creating logout request:', err);
-//         return res.status(500).json({ error: 'Logout failed' });
-//       }
-
-//       // Redirect the user to the IdP's logout endpoint
-//       res.redirect(logoutUrl);
-//     }
-//   );
-// });
-
-
-// Handle SAML Assertion Consumer Service (ACS)
-app.post('/sso/acs', (req: Request, res: Response) => {
-  const { SAMLResponse } = req.body;
-
-  console.log(`SAMLResponse from Identity Provider`, SAMLResponse)
-
-  serviceProvider.post_assert(identityProvider, { request_body: { SAMLResponse } }, (err, response) => {
-    if (err) {
-      console.error("Error processing SAML response:", err);
-      return res.status(401).json({ error: "SAML authentication failed" });
-    }
-
-    // Extract user data from SAML response
-    const user_data = {
-      name_id: response.user.name_id,
-      attributes: response.user.attributes,
-    };
-
-    // Redirect to the appropriate app
-    const app_url = "http://localhost:4014/dashboard"; // Example app URL
-    console.log("Redirecting to app URL:", app_url);
-    res.redirect(`${app_url}?user=${encodeURIComponent(JSON.stringify(user_data))}`);
-  });
-});
-
-// Start the server
 app.listen(port, () => {
   console.log(`Service Provider is up and running on ${port}`);
-  logger.info(`Service Provider is up and running on ${port}`);
 });

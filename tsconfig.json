@@ -11,7 +11,10 @@
       "esModuleInterop": true,
       "moduleResolution": "Node",
       "typeRoots": ["./node_modules/@types", "./src/types"],
-      "types": ["node"],
+      "types": ["node", "express-session"],
+      "paths": {
+        "*": ["./src/@types/*"]
+      },
       /* Type Checking */
       "strict": true,                                      /* Enable all strict type-checking options. */
       "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */

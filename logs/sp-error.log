@@ -1,0 +1,20 @@
+2025-04-04 00:58:25: /Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:859
+2025-04-04 00:58:25:     return new TSError(diagnosticText, diagnosticCodes, diagnostics);
+2025-04-04 00:58:25:            ^
+2025-04-04 00:58:25: TSError: ⨯ Unable to compile TypeScript:
+2025-04-04 00:58:25: src/index.ts(9,8): error TS1192: Module '"/Users/sfteam/Documents/nodeApps/Service Provider/src/routes/main.router"' has no default export.
+2025-04-04 00:58:25: 
+2025-04-04 00:58:25:     at createTSError (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:859:12)
+2025-04-04 00:58:25:     at reportTSError (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:863:19)
+2025-04-04 00:58:25:     at getOutput (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1077:36)
+2025-04-04 00:58:25:     at Object.compile (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1433:41)
+2025-04-04 00:58:25:     at Module.m._compile (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1617:30)
+2025-04-04 00:58:25:     at node:internal/modules/cjs/loader:1905:10
+2025-04-04 00:58:25:     at Object.require.extensions.<computed> [as .ts] (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1621:12)
+2025-04-04 00:58:25:     at Module.load (node:internal/modules/cjs/loader:1474:32)
+2025-04-04 00:58:25:     at Function._load (node:internal/modules/cjs/loader:1286:12)
+2025-04-04 00:58:25:     at TracingChannel.traceSync (node:diagnostics_channel:322:14) {
+2025-04-04 00:58:25:   diagnosticCodes: [ 1192 ]
+2025-04-04 00:58:25: }
+2025-04-04 00:59:56: (node:34182) MaxListenersExceededWarning: Possible EventEmitter memory leak detected. 11 exit listeners added to [Bus]. MaxListeners is 10. Use emitter.setMaxListeners() to increase limit
+2025-04-04 00:59:56: (Use `node --trace-warnings ...` to show where the warning was created)

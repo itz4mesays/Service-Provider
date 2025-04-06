@@ -1,4 +1,4 @@
-import { UserRoles } from "@prisma/client";
+import { GenderTypes, IdentificationType, MaritalStatus, Options } from "@prisma/client";
 
 export type ResponseObject = {
     error: boolean;
@@ -30,28 +30,42 @@ export type ProfileObj = {
 }
 
 export type User = {
-    id: string;
-    email: string;
-    role: string;
+    id?: string;
+    email?: string;
+    role?: string;
 }
 
-export type NewUserPayload = {
-    email: string
-    name: string
-    phone_number: string
-    password: string
-    confirm_password: string
-    description?: string | undefined
+export type IndividualPayload = {
+    tax_id: string
+    tax_pay_type: IdentificationType
+    identification_value: string
+    date_of_birth: string | undefined
 }
 
-export type NewBusinessPayload = {
-    email: string
-    name: string
-    phone_number: string | undefined
-    password: string
-    confirm_password: string
-    website?: string | undefined
-    address: string
-    industry: string
-    description?: string | undefined
+export type CompleteSignUpPayload = {
+    tax_id: string;               // 8 or 10 characters
+    verification_code: string;               // 8 or 10 characters
+    firstname: string;            // max 155 chars
+    surname: string;              // max 155 chars
+    othernames?: string | null;   // optional, max 155 chars
+    gender: GenderTypes;
+    marital_status: MaritalStatus;
+    email_address: string;        // unique
+    phone_number: string;         // unique
+    date_of_birth?: Date | null;
+    kaadi_igbeayo_no: string;
+    is_public_servant: Options;
+    nationality: string;          // max 100 chars
+    occupation: string;           // max 155 chars
+    state_of_origin: string;      // max 100 chars
+    lga_of_origin: string;        // max 100 chars
+    business_type: string;        // max 255 chars
+    tax_lga_area: string;
+    tax_station: string;
+    identification_type: string;
+    identification_value: string;
 }
+
+export type SamlRequestResult =
+    | { type: 'post'; form: string }
+    | { type: 'redirect'; url: string };
