@@ -8,6 +8,7 @@ import dotenv from 'dotenv'
 import { IdentityProvider } from 'saml2-js';
 import envVars from '../validations/validateEnv';
 import { signJwt } from '../utils/helpers';
+import prisma from '../utils/client';
 dotenv.config()
 
 const router: Router = express.Router();
@@ -102,15 +103,19 @@ router.get('/sp/config-check', (req: Request, res: Response) => {
   });
 });
 
-router.get('/sp/logout', (req: Request, res: Response) => {
-  req.session.destroy((err) => {
-    if (err) {
-      return handleError(res, 500, 'Failed to log out')
-    }
+router.get('/sp/logout', async (req: Request, res: Response) => {
+  try {
+    const token = req.headers.authorization?.split(' ')[1];
 
-    return successResponse(res, 200, {}, "You have been logged out successfully")
-    // res.redirect('/login');  // Redirect to login page after logout
-  });
+    if (!token) return handleError(res, 401, "Unauthorized")
+    await prisma.blackListedToken.create({
+      data: { token }
+    })
+
+    return successResponse(res, 200, {}, "Logout successful")
+  } catch (error) {
+    return handleError(res, 500, error)
+  }
 });
 
 router.post('/sp/acs', express.urlencoded({ extended: true }), async (req: Request, res: Response) => {

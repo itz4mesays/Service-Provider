@@ -526,3 +526,43 @@ TSError: ⨯ Unable to compile TypeScript:
     at Module.load (node:internal/modules/cjs/loader:1474:32)
     at Function._load (node:internal/modules/cjs/loader:1286:12)
     at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-04-18 16:03:02 [ERROR]: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/routes/main.router.ts[0m:[93m109[0m:[93m5[0m - [91merror[0m[90m TS1308: [0m'await' expressions are only allowed within async functions and at the top levels of modules.
+
+[7m109[0m     await prisma.blackListedToken.create({
+[7m   [0m [91m    ~~~~~[0m
+
+  [96msrc/routes/main.router.ts[0m:[93m105[0m:[93m26[0m
+    [7m105[0m router.get('/sp/logout', (req: Request, res: Response) => {
+    [7m   [0m [96m                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    Did you mean to mark this function as 'async'?
+[96msrc/routes/main.router.ts[0m:[93m109[0m:[93m11[0m - [91merror[0m[90m TS2304: [0mCannot find name 'prisma'.
+
+[7m109[0m     await prisma.blackListedToken.create({
+[7m   [0m [91m          ~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/routes/main.router.ts[0m:[93m109[0m:[93m5[0m - [91merror[0m[90m TS1308: [0m'await' expressions are only allowed within async functions and at the top levels of modules.
+
+[7m109[0m     await prisma.blackListedToken.create({
+[7m   [0m [91m    ~~~~~[0m
+
+  [96msrc/routes/main.router.ts[0m:[93m105[0m:[93m26[0m
+    [7m105[0m router.get('/sp/logout', (req: Request, res: Response) => {
+    [7m   [0m [96m                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+    Did you mean to mark this function as 'async'?
+[96msrc/routes/main.router.ts[0m:[93m109[0m:[93m11[0m - [91merror[0m[90m TS2304: [0mCannot find name 'prisma'.
+
+[7m109[0m     await prisma.blackListedToken.create({
+[7m   [0m [91m          ~~~~~~[0m
+
+    at createTSError (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1905:10
+    at Object.require.extensions.<computed> [as .ts] (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1474:32)
+    at Function._load (node:internal/modules/cjs/loader:1286:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
