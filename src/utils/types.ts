@@ -69,3 +69,12 @@ export type CompleteSignUpPayload = {
 export type SamlRequestResult =
     | { type: 'post'; form: string }
     | { type: 'redirect'; url: string };
+
+
+export type JwtPayload = {
+    id: string;
+    email_address: string;
+    tax_id: string;
+    role: string;
+    nameid: string;
+}

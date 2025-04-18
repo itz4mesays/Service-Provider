@@ -9,6 +9,8 @@ const envSchema: Joi.ObjectSchema = Joi.object({
     IDENTITY_PROVIDER_URL: Joi.string().required(),
     SESSION_SECRET: Joi.string().required(),
     ENCRYPTION_KEY: Joi.string().required(),
+    JWT_SECRET: Joi.string().required(),
+    JWT_EXPIRY: Joi.string().required(),
 })
     .unknown() // Allow additional environment variables not specified in the schema
     .required();

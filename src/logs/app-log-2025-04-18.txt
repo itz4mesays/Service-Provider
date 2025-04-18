@@ -1,0 +1,528 @@
+2025-04-18 14:48:15 [ERROR]: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/helpers.ts[0m:[93m163[0m:[93m38[0m - [91merror[0m[90m TS2304: [0mCannot find name 'CustomRequest'.
+
+[7m163[0m export const jwtVerify = async (req: CustomRequest, res: Response, next: NextFunction) => {
+[7m   [0m [91m                                     ~~~~~~~~~~~~~[0m
+[96msrc/utils/helpers.ts[0m:[93m163[0m:[93m74[0m - [91merror[0m[90m TS2552: [0mCannot find name 'NextFunction'. Did you mean 'Function'?
+
+[7m163[0m export const jwtVerify = async (req: CustomRequest, res: Response, next: NextFunction) => {
+[7m   [0m [91m                                                                         ~~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.es5.d.ts[0m:[93m319[0m:[93m13[0m
+    [7m319[0m declare var Function: FunctionConstructor;
+    [7m   [0m [96m            ~~~~~~~~[0m
+    'Function' is declared here.
+[96msrc/utils/helpers.ts[0m:[93m181[0m:[93m53[0m - [91merror[0m[90m TS2339: [0mProperty 'blackListedToken' does not exist on type 'PrismaClient<PrismaClientOptions, never, DefaultArgs>'.
+
+[7m181[0m                 const isTokenRevoked = await prisma.blackListedToken.findFirst({
+[7m   [0m [91m                                                    ~~~~~~~~~~~~~~~~[0m
+[96msrc/utils/helpers.ts[0m:[93m189[0m:[93m70[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m189[0m                 jwt.verify(token, process.env.JWT_SECRET as string, (err, decoded) => {
+[7m   [0m [91m                                                                     ~~~[0m
+[96msrc/utils/helpers.ts[0m:[93m189[0m:[93m75[0m - [91merror[0m[90m TS7006: [0mParameter 'decoded' implicitly has an 'any' type.
+
+[7m189[0m                 jwt.verify(token, process.env.JWT_SECRET as string, (err, decoded) => {
+[7m   [0m [91m                                                                          ~~~~~~~[0m
+[96msrc/utils/helpers.ts[0m:[93m193[0m:[93m43[0m - [91merror[0m[90m TS2304: [0mCannot find name 'User'.
+
+[7m193[0m                     req.user = decoded as User;
+[7m   [0m [91m                                          ~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/helpers.ts[0m:[93m163[0m:[93m38[0m - [91merror[0m[90m TS2304: [0mCannot find name 'CustomRequest'.
+
+[7m163[0m export const jwtVerify = async (req: CustomRequest, res: Response, next: NextFunction) => {
+[7m   [0m [91m                                     ~~~~~~~~~~~~~[0m
+[96msrc/utils/helpers.ts[0m:[93m163[0m:[93m74[0m - [91merror[0m[90m TS2552: [0mCannot find name 'NextFunction'. Did you mean 'Function'?
+
+[7m163[0m export const jwtVerify = async (req: CustomRequest, res: Response, next: NextFunction) => {
+[7m   [0m [91m                                                                         ~~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.es5.d.ts[0m:[93m319[0m:[93m13[0m
+    [7m319[0m declare var Function: FunctionConstructor;
+    [7m   [0m [96m            ~~~~~~~~[0m
+    'Function' is declared here.
+[96msrc/utils/helpers.ts[0m:[93m181[0m:[93m53[0m - [91merror[0m[90m TS2339: [0mProperty 'blackListedToken' does not exist on type 'PrismaClient<PrismaClientOptions, never, DefaultArgs>'.
+
+[7m181[0m                 const isTokenRevoked = await prisma.blackListedToken.findFirst({
+[7m   [0m [91m                                                    ~~~~~~~~~~~~~~~~[0m
+[96msrc/utils/helpers.ts[0m:[93m189[0m:[93m70[0m - [91merror[0m[90m TS7006: [0mParameter 'err' implicitly has an 'any' type.
+
+[7m189[0m                 jwt.verify(token, process.env.JWT_SECRET as string, (err, decoded) => {
+[7m   [0m [91m                                                                     ~~~[0m
+[96msrc/utils/helpers.ts[0m:[93m189[0m:[93m75[0m - [91merror[0m[90m TS7006: [0mParameter 'decoded' implicitly has an 'any' type.
+
+[7m189[0m                 jwt.verify(token, process.env.JWT_SECRET as string, (err, decoded) => {
+[7m   [0m [91m                                                                          ~~~~~~~[0m
+[96msrc/utils/helpers.ts[0m:[93m193[0m:[93m43[0m - [91merror[0m[90m TS2304: [0mCannot find name 'User'.
+
+[7m193[0m                     req.user = decoded as User;
+[7m   [0m [91m                                          ~~~~[0m
+
+    at createTSError (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1905:10
+    at Object.require.extensions.<computed> [as .ts] (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1474:32)
+    at Function._load (node:internal/modules/cjs/loader:1286:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-04-18 14:48:56 [ERROR]: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/helpers.ts[0m:[93m168[0m:[93m74[0m - [91merror[0m[90m TS2552: [0mCannot find name 'NextFunction'. Did you mean 'Function'?
+
+[7m168[0m export const jwtVerify = async (req: CustomRequest, res: Response, next: NextFunction) => {
+[7m   [0m [91m                                                                         ~~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.es5.d.ts[0m:[93m319[0m:[93m13[0m
+    [7m319[0m declare var Function: FunctionConstructor;
+    [7m   [0m [96m            ~~~~~~~~[0m
+    'Function' is declared here.
+[96msrc/utils/helpers.ts[0m:[93m186[0m:[93m53[0m - [91merror[0m[90m TS2339: [0mProperty 'blackListedToken' does not exist on type 'PrismaClient<PrismaClientOptions, never, DefaultArgs>'.
+
+[7m186[0m                 const isTokenRevoked = await prisma.blackListedToken.findFirst({
+[7m   [0m [91m                                                    ~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/helpers.ts[0m:[93m168[0m:[93m74[0m - [91merror[0m[90m TS2552: [0mCannot find name 'NextFunction'. Did you mean 'Function'?
+
+[7m168[0m export const jwtVerify = async (req: CustomRequest, res: Response, next: NextFunction) => {
+[7m   [0m [91m                                                                         ~~~~~~~~~~~~[0m
+
+  [96mnode_modules/typescript/lib/lib.es5.d.ts[0m:[93m319[0m:[93m13[0m
+    [7m319[0m declare var Function: FunctionConstructor;
+    [7m   [0m [96m            ~~~~~~~~[0m
+    'Function' is declared here.
+[96msrc/utils/helpers.ts[0m:[93m186[0m:[93m53[0m - [91merror[0m[90m TS2339: [0mProperty 'blackListedToken' does not exist on type 'PrismaClient<PrismaClientOptions, never, DefaultArgs>'.
+
+[7m186[0m                 const isTokenRevoked = await prisma.blackListedToken.findFirst({
+[7m   [0m [91m                                                    ~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1905:10
+    at Object.require.extensions.<computed> [as .ts] (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1474:32)
+    at Function._load (node:internal/modules/cjs/loader:1286:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-04-18 14:49:04 [ERROR]: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/utils/helpers.ts[0m:[93m186[0m:[93m53[0m - [91merror[0m[90m TS2339: [0mProperty 'blackListedToken' does not exist on type 'PrismaClient<PrismaClientOptions, never, DefaultArgs>'.
+
+[7m186[0m                 const isTokenRevoked = await prisma.blackListedToken.findFirst({
+[7m   [0m [91m                                                    ~~~~~~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/utils/helpers.ts[0m:[93m186[0m:[93m53[0m - [91merror[0m[90m TS2339: [0mProperty 'blackListedToken' does not exist on type 'PrismaClient<PrismaClientOptions, never, DefaultArgs>'.
+
+[7m186[0m                 const isTokenRevoked = await prisma.blackListedToken.findFirst({
+[7m   [0m [91m                                                    ~~~~~~~~~~~~~~~~[0m
+
+    at createTSError (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1905:10
+    at Object.require.extensions.<computed> [as .ts] (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1474:32)
+    at Function._load (node:internal/modules/cjs/loader:1286:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-04-18 15:13:54 [ERROR]: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/routes/main.router.ts[0m:[93m184[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'nameid' does not exist in type 'JwtPayload'.
+
+[7m184[0m       nameid: user.nameid
+[7m   [0m [91m      ~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/routes/main.router.ts[0m:[93m184[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'nameid' does not exist in type 'JwtPayload'.
+
+[7m184[0m       nameid: user.nameid
+[7m   [0m [91m      ~~~~~~[0m
+
+    at createTSError (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1905:10
+    at Object.require.extensions.<computed> [as .ts] (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1474:32)
+    at Function._load (node:internal/modules/cjs/loader:1286:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-04-18 15:14:02 [ERROR]: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/routes/main.router.ts[0m:[93m184[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'nameid' does not exist in type 'JwtPayload'.
+
+[7m184[0m       nameid: user.nameid
+[7m   [0m [91m      ~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/routes/main.router.ts[0m:[93m184[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'nameid' does not exist in type 'JwtPayload'.
+
+[7m184[0m       nameid: user.nameid
+[7m   [0m [91m      ~~~~~~[0m
+
+    at createTSError (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1905:10
+    at Object.require.extensions.<computed> [as .ts] (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1474:32)
+    at Function._load (node:internal/modules/cjs/loader:1286:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-04-18 15:14:15 [ERROR]: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/routes/main.router.ts[0m:[93m184[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'nameid' does not exist in type 'JwtPayload'.
+
+[7m184[0m       nameid: user.nameid
+[7m   [0m [91m      ~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/routes/main.router.ts[0m:[93m184[0m:[93m7[0m - [91merror[0m[90m TS2353: [0mObject literal may only specify known properties, and 'nameid' does not exist in type 'JwtPayload'.
+
+[7m184[0m       nameid: user.nameid
+[7m   [0m [91m      ~~~~~~[0m
+
+    at createTSError (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1905:10
+    at Object.require.extensions.<computed> [as .ts] (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1474:32)
+    at Function._load (node:internal/modules/cjs/loader:1286:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-04-18 15:34:56 [ERROR]: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/routes/main.router.ts[0m:[93m187[0m:[93m15[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ tax_id: string; email_address: string; role: string; }' is not assignable to parameter of type 'string'.
+
+[7m187[0m         user: {
+[7m   [0m [91m              ~[0m
+[7m188[0m       tax_id: user.tax_id,
+[7m   [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[7m...[0m 
+[7m190[0m       role: user.role
+[7m   [0m [91m~~~~~~~~~~~~~~~~~~~~~[0m
+[7m191[0m     }
+[7m   [0m [91m~~~~~[0m
+[96msrc/routes/main.router.ts[0m:[93m187[0m:[93m13[0m - [91merror[0m[90m TS1005: [0m',' expected.
+
+[7m187[0m         user: {
+[7m   [0m [91m            ~[0m
+[96msrc/routes/main.router.ts[0m:[93m187[0m:[93m15[0m - [91merror[0m[90m TS1136: [0mProperty assignment expected.
+
+[7m187[0m         user: {
+[7m   [0m [91m              ~[0m
+[96msrc/routes/main.router.ts[0m:[93m192[0m:[93m5[0m - [91merror[0m[90m TS1005: [0m',' expected.
+
+[7m192[0m     }, "SAML Response processed successfully");
+[7m   [0m [91m    ~[0m
+[96msrc/routes/main.router.ts[0m:[93m192[0m:[93m6[0m - [91merror[0m[90m TS1472: [0m'catch' or 'finally' expected.
+
+[7m192[0m     }, "SAML Response processed successfully");
+[7m   [0m [91m     ~[0m
+[96msrc/routes/main.router.ts[0m:[93m192[0m:[93m46[0m - [91merror[0m[90m TS1005: [0m';' expected.
+
+[7m192[0m     }, "SAML Response processed successfully");
+[7m   [0m [91m                                             ~[0m
+[96msrc/routes/main.router.ts[0m:[93m193[0m:[93m3[0m - [91merror[0m[90m TS1128: [0mDeclaration or statement expected.
+
+[7m193[0m   } catch (err) {
+[7m   [0m [91m  ~[0m
+[96msrc/routes/main.router.ts[0m:[93m193[0m:[93m5[0m - [91merror[0m[90m TS1005: [0m'try' expected.
+
+[7m193[0m   } catch (err) {
+[7m   [0m [91m    ~~~~~[0m
+[96msrc/routes/main.router.ts[0m:[93m197[0m:[93m1[0m - [91merror[0m[90m TS1128: [0mDeclaration or statement expected.
+
+[7m197[0m });
+[7m   [0m [91m~[0m
+[96msrc/routes/main.router.ts[0m:[93m197[0m:[93m2[0m - [91merror[0m[90m TS1128: [0mDeclaration or statement expected.
+
+[7m197[0m });
+[7m   [0m [91m ~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/routes/main.router.ts[0m:[93m187[0m:[93m15[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ tax_id: string; email_address: string; role: string; }' is not assignable to parameter of type 'string'.
+
+[7m187[0m         user: {
+[7m   [0m [91m              ~[0m
+[7m188[0m       tax_id: user.tax_id,
+[7m   [0m [91m~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+[7m...[0m 
+[7m190[0m       role: user.role
+[7m   [0m [91m~~~~~~~~~~~~~~~~~~~~~[0m
+[7m191[0m     }
+[7m   [0m [91m~~~~~[0m
+[96msrc/routes/main.router.ts[0m:[93m187[0m:[93m13[0m - [91merror[0m[90m TS1005: [0m',' expected.
+
+[7m187[0m         user: {
+[7m   [0m [91m            ~[0m
+[96msrc/routes/main.router.ts[0m:[93m187[0m:[93m15[0m - [91merror[0m[90m TS1136: [0mProperty assignment expected.
+
+[7m187[0m         user: {
+[7m   [0m [91m              ~[0m
+[96msrc/routes/main.router.ts[0m:[93m192[0m:[93m5[0m - [91merror[0m[90m TS1005: [0m',' expected.
+
+[7m192[0m     }, "SAML Response processed successfully");
+[7m   [0m [91m    ~[0m
+[96msrc/routes/main.router.ts[0m:[93m192[0m:[93m6[0m - [91merror[0m[90m TS1472: [0m'catch' or 'finally' expected.
+
+[7m192[0m     }, "SAML Response processed successfully");
+[7m   [0m [91m     ~[0m
+[96msrc/routes/main.router.ts[0m:[93m192[0m:[93m46[0m - [91merror[0m[90m TS1005: [0m';' expected.
+
+[7m192[0m     }, "SAML Response processed successfully");
+[7m   [0m [91m                                             ~[0m
+[96msrc/routes/main.router.ts[0m:[93m193[0m:[93m3[0m - [91merror[0m[90m TS1128: [0mDeclaration or statement expected.
+
+[7m193[0m   } catch (err) {
+[7m   [0m [91m  ~[0m
+[96msrc/routes/main.router.ts[0m:[93m193[0m:[93m5[0m - [91merror[0m[90m TS1005: [0m'try' expected.
+
+[7m193[0m   } catch (err) {
+[7m   [0m [91m    ~~~~~[0m
+[96msrc/routes/main.router.ts[0m:[93m197[0m:[93m1[0m - [91merror[0m[90m TS1128: [0mDeclaration or statement expected.
+
+[7m197[0m });
+[7m   [0m [91m~[0m
+[96msrc/routes/main.router.ts[0m:[93m197[0m:[93m2[0m - [91merror[0m[90m TS1128: [0mDeclaration or statement expected.
+
+[7m197[0m });
+[7m   [0m [91m ~[0m
+
+    at createTSError (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1905:10
+    at Object.require.extensions.<computed> [as .ts] (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1474:32)
+    at Function._load (node:internal/modules/cjs/loader:1286:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-04-18 15:53:28 [ERROR]: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/routes/account.router.ts[0m:[93m3[0m:[93m10[0m - [91merror[0m[90m TS2614: [0mModule '"../middlewares/check.admin"' has no exported member 'ensureAdmin'. Did you mean to use 'import ensureAdmin from "../middlewares/check.admin"' instead?
+
+[7m3[0m import { ensureAdmin } from '../middlewares/check.admin';
+[7m [0m [91m         ~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/routes/account.router.ts[0m:[93m3[0m:[93m10[0m - [91merror[0m[90m TS2614: [0mModule '"../middlewares/check.admin"' has no exported member 'ensureAdmin'. Did you mean to use 'import ensureAdmin from "../middlewares/check.admin"' instead?
+
+[7m3[0m import { ensureAdmin } from '../middlewares/check.admin';
+[7m [0m [91m         ~~~~~~~~~~~[0m
+
+    at createTSError (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1905:10
+    at Object.require.extensions.<computed> [as .ts] (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1474:32)
+    at Function._load (node:internal/modules/cjs/loader:1286:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-04-18 15:54:05 [ERROR]: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/routes/account.router.ts[0m:[93m3[0m:[93m10[0m - [91merror[0m[90m TS2614: [0mModule '"../middlewares/check.admin"' has no exported member 'ensureAdmin'. Did you mean to use 'import ensureAdmin from "../middlewares/check.admin"' instead?
+
+[7m3[0m import { ensureAdmin } from '../middlewares/check.admin';
+[7m [0m [91m         ~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/routes/account.router.ts[0m:[93m3[0m:[93m10[0m - [91merror[0m[90m TS2614: [0mModule '"../middlewares/check.admin"' has no exported member 'ensureAdmin'. Did you mean to use 'import ensureAdmin from "../middlewares/check.admin"' instead?
+
+[7m3[0m import { ensureAdmin } from '../middlewares/check.admin';
+[7m [0m [91m         ~~~~~~~~~~~[0m
+
+    at createTSError (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1905:10
+    at Object.require.extensions.<computed> [as .ts] (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1474:32)
+    at Function._load (node:internal/modules/cjs/loader:1286:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-04-18 15:54:07 [ERROR]: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/routes/account.router.ts[0m:[93m3[0m:[93m10[0m - [91merror[0m[90m TS2614: [0mModule '"../middlewares/check.admin"' has no exported member 'ensureAdmin'. Did you mean to use 'import ensureAdmin from "../middlewares/check.admin"' instead?
+
+[7m3[0m import { ensureAdmin } from '../middlewares/check.admin';
+[7m [0m [91m         ~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/routes/account.router.ts[0m:[93m3[0m:[93m10[0m - [91merror[0m[90m TS2614: [0mModule '"../middlewares/check.admin"' has no exported member 'ensureAdmin'. Did you mean to use 'import ensureAdmin from "../middlewares/check.admin"' instead?
+
+[7m3[0m import { ensureAdmin } from '../middlewares/check.admin';
+[7m [0m [91m         ~~~~~~~~~~~[0m
+
+    at createTSError (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1905:10
+    at Object.require.extensions.<computed> [as .ts] (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1474:32)
+    at Function._load (node:internal/modules/cjs/loader:1286:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-04-18 15:54:13 [ERROR]: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/routes/account.router.ts[0m:[93m3[0m:[93m10[0m - [91merror[0m[90m TS2614: [0mModule '"../middlewares/check.admin"' has no exported member 'ensureAdmin'. Did you mean to use 'import ensureAdmin from "../middlewares/check.admin"' instead?
+
+[7m3[0m import { ensureAdmin } from '../middlewares/check.admin';
+[7m [0m [91m         ~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/routes/account.router.ts[0m:[93m3[0m:[93m10[0m - [91merror[0m[90m TS2614: [0mModule '"../middlewares/check.admin"' has no exported member 'ensureAdmin'. Did you mean to use 'import ensureAdmin from "../middlewares/check.admin"' instead?
+
+[7m3[0m import { ensureAdmin } from '../middlewares/check.admin';
+[7m [0m [91m         ~~~~~~~~~~~[0m
+
+    at createTSError (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1905:10
+    at Object.require.extensions.<computed> [as .ts] (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1474:32)
+    at Function._load (node:internal/modules/cjs/loader:1286:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-04-18 15:55:50 [ERROR]: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/routes/account.router.ts[0m:[93m3[0m:[93m10[0m - [91merror[0m[90m TS2614: [0mModule '"../middlewares/check.admin"' has no exported member 'ensureAdmin'. Did you mean to use 'import ensureAdmin from "../middlewares/check.admin"' instead?
+
+[7m3[0m import { ensureAdmin } from '../middlewares/check.admin';
+[7m [0m [91m         ~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/routes/account.router.ts[0m:[93m3[0m:[93m10[0m - [91merror[0m[90m TS2614: [0mModule '"../middlewares/check.admin"' has no exported member 'ensureAdmin'. Did you mean to use 'import ensureAdmin from "../middlewares/check.admin"' instead?
+
+[7m3[0m import { ensureAdmin } from '../middlewares/check.admin';
+[7m [0m [91m         ~~~~~~~~~~~[0m
+
+    at createTSError (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1905:10
+    at Object.require.extensions.<computed> [as .ts] (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1474:32)
+    at Function._load (node:internal/modules/cjs/loader:1286:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-04-18 15:56:14 [ERROR]: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/routes/account.router.ts[0m:[93m3[0m:[93m10[0m - [91merror[0m[90m TS2614: [0mModule '"../middlewares/check.admin"' has no exported member 'ensureAdmin'. Did you mean to use 'import ensureAdmin from "../middlewares/check.admin"' instead?
+
+[7m3[0m import { ensureAdmin } from '../middlewares/check.admin';
+[7m [0m [91m         ~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/routes/account.router.ts[0m:[93m3[0m:[93m10[0m - [91merror[0m[90m TS2614: [0mModule '"../middlewares/check.admin"' has no exported member 'ensureAdmin'. Did you mean to use 'import ensureAdmin from "../middlewares/check.admin"' instead?
+
+[7m3[0m import { ensureAdmin } from '../middlewares/check.admin';
+[7m [0m [91m         ~~~~~~~~~~~[0m
+
+    at createTSError (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1905:10
+    at Object.require.extensions.<computed> [as .ts] (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1474:32)
+    at Function._load (node:internal/modules/cjs/loader:1286:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-04-18 15:56:27 [ERROR]: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/routes/account.router.ts[0m:[93m3[0m:[93m10[0m - [91merror[0m[90m TS2614: [0mModule '"../middlewares/check.admin"' has no exported member 'ensureAdmin'. Did you mean to use 'import ensureAdmin from "../middlewares/check.admin"' instead?
+
+[7m3[0m import { ensureAdmin } from '../middlewares/check.admin';
+[7m [0m [91m         ~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/routes/account.router.ts[0m:[93m3[0m:[93m10[0m - [91merror[0m[90m TS2614: [0mModule '"../middlewares/check.admin"' has no exported member 'ensureAdmin'. Did you mean to use 'import ensureAdmin from "../middlewares/check.admin"' instead?
+
+[7m3[0m import { ensureAdmin } from '../middlewares/check.admin';
+[7m [0m [91m         ~~~~~~~~~~~[0m
+
+    at createTSError (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1905:10
+    at Object.require.extensions.<computed> [as .ts] (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1474:32)
+    at Function._load (node:internal/modules/cjs/loader:1286:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-04-18 15:56:42 [ERROR]: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/routes/account.router.ts[0m:[93m3[0m:[93m10[0m - [91merror[0m[90m TS2614: [0mModule '"../middlewares/check.admin"' has no exported member 'ensureAdmin'. Did you mean to use 'import ensureAdmin from "../middlewares/check.admin"' instead?
+
+[7m3[0m import { ensureAdmin } from '../middlewares/check.admin';
+[7m [0m [91m         ~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/routes/account.router.ts[0m:[93m3[0m:[93m10[0m - [91merror[0m[90m TS2614: [0mModule '"../middlewares/check.admin"' has no exported member 'ensureAdmin'. Did you mean to use 'import ensureAdmin from "../middlewares/check.admin"' instead?
+
+[7m3[0m import { ensureAdmin } from '../middlewares/check.admin';
+[7m [0m [91m         ~~~~~~~~~~~[0m
+
+    at createTSError (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1905:10
+    at Object.require.extensions.<computed> [as .ts] (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1474:32)
+    at Function._load (node:internal/modules/cjs/loader:1286:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-04-18 15:56:46 [ERROR]: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/routes/account.router.ts[0m:[93m3[0m:[93m10[0m - [91merror[0m[90m TS2614: [0mModule '"../middlewares/check.admin"' has no exported member 'ensureAdmin'. Did you mean to use 'import ensureAdmin from "../middlewares/check.admin"' instead?
+
+[7m3[0m import { ensureAdmin } from '../middlewares/check.admin';
+[7m [0m [91m         ~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/routes/account.router.ts[0m:[93m3[0m:[93m10[0m - [91merror[0m[90m TS2614: [0mModule '"../middlewares/check.admin"' has no exported member 'ensureAdmin'. Did you mean to use 'import ensureAdmin from "../middlewares/check.admin"' instead?
+
+[7m3[0m import { ensureAdmin } from '../middlewares/check.admin';
+[7m [0m [91m         ~~~~~~~~~~~[0m
+
+    at createTSError (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1905:10
+    at Object.require.extensions.<computed> [as .ts] (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1474:32)
+    at Function._load (node:internal/modules/cjs/loader:1286:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+2025-04-18 15:56:55 [ERROR]: uncaughtException: ⨯ Unable to compile TypeScript:
+[96msrc/routes/account.router.ts[0m:[93m3[0m:[93m10[0m - [91merror[0m[90m TS2614: [0mModule '"../middlewares/check.admin"' has no exported member 'ensureAdmin'. Did you mean to use 'import ensureAdmin from "../middlewares/check.admin"' instead?
+
+[7m3[0m import { ensureAdmin } from '../middlewares/check.admin';
+[7m [0m [91m         ~~~~~~~~~~~[0m
+
+TSError: ⨯ Unable to compile TypeScript:
+[96msrc/routes/account.router.ts[0m:[93m3[0m:[93m10[0m - [91merror[0m[90m TS2614: [0mModule '"../middlewares/check.admin"' has no exported member 'ensureAdmin'. Did you mean to use 'import ensureAdmin from "../middlewares/check.admin"' instead?
+
+[7m3[0m import { ensureAdmin } from '../middlewares/check.admin';
+[7m [0m [91m         ~~~~~~~~~~~[0m
+
+    at createTSError (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:859:12)
+    at reportTSError (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:863:19)
+    at getOutput (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1077:36)
+    at Object.compile (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1433:41)
+    at Module.m._compile (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1617:30)
+    at node:internal/modules/cjs/loader:1905:10
+    at Object.require.extensions.<computed> [as .ts] (/Users/sfteam/Documents/nodeApps/Service Provider/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1474:32)
+    at Function._load (node:internal/modules/cjs/loader:1286:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)

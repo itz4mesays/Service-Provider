@@ -21,6 +21,15 @@ model User {
   @@map(name: "users")
 }
 
+model BlackListedToken {
+  id         Int      @id @default(autoincrement())
+  token      String   @db.Text
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+
+  @@map(name: "blacklisted_tokens")
+}
+
 model Individual {
   id                   Int                 @id @default(autoincrement())
   tax_id               String

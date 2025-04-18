@@ -7,6 +7,7 @@ import fs from 'fs'
 import dotenv from 'dotenv'
 import { IdentityProvider } from 'saml2-js';
 import envVars from '../validations/validateEnv';
+import { signJwt } from '../utils/helpers';
 dotenv.config()
 
 const router: Router = express.Router();
@@ -60,7 +61,7 @@ router.get('/sp/login', (req: Request, res: Response) => {
     (req.session as unknown as CustomSessionData).saml = {
       requestId: request_id,
       // You can dynamically set the nameId here, if needed
-      nameId: 'user@example.com',  // This is a placeholder, set dynamically based on your authentication flow
+      nameId: null,  // This is a placeholder, set dynamically based on your authentication flow
     };
 
     // Log session data for debugging
@@ -113,11 +114,6 @@ router.get('/sp/logout', (req: Request, res: Response) => {
 });
 
 router.post('/sp/acs', express.urlencoded({ extended: true }), async (req: Request, res: Response) => {
-  if (!req.session) {
-    console.error('Session is not initialized');
-    return res.status(500).send('Session not initialized');
-  }
-
   const { SAMLResponse, RelayState } = req.body;
 
   // console.log(`I received SAML response from ${envVars.IDENTITY_PROVIDER_URL}`, SAMLResponse);
@@ -129,8 +125,6 @@ router.post('/sp/acs', express.urlencoded({ extended: true }), async (req: Reque
   try {
     // Decode the base64-encoded SAML Response
     const decodedSamlResponse = Buffer.from(SAMLResponse, 'base64').toString('utf-8').trim();
-
-    // console.log(`Decoded SAML response from ${envVars.IDENTITY_PROVIDER_URL}`, decodedSamlResponse);
 
     // Check for any unwanted characters before the XML start tag
     if (!decodedSamlResponse.startsWith('<?xml version')) {
@@ -166,6 +160,8 @@ router.post('/sp/acs', express.urlencoded({ extended: true }), async (req: Reque
         user.email_address = attributeValue;
       } else if (attributeName === 'Role') {
         user.role = attributeValue;
+      } else if (attributeName === 'NameId') {
+        user.nameid = attributeValue;
       }
     });
 
@@ -175,28 +171,24 @@ router.post('/sp/acs', express.urlencoded({ extended: true }), async (req: Reque
       return handleError(res, 400, 'User information is incomplete in the SAML Response')
     }
 
-    // Store user information in the session
-    (req.session as unknown as CustomSessionData).user = {
+
+    const token = await signJwt({
       id: user.tax_id,  // Or another identifier if needed
       email_address: user.email_address,
       tax_id: user.tax_id,
       role: user.role,
-    };
+      nameid: user.nameid
+    })
 
-    req.session.save((err) => {
-      if (err) {
-        console.error('Session save error:', err);
-        return res.status(500).send('Failed to save session');
-      }
-
-      console.log(`Session User info`, req.session)
-
-      return successResponse(res, 200, {
+    return successResponse(res, 200, {
+      token,
+      expiresIn: envVars.JWT_EXPIRY,
+      user: {
         tax_id: user.tax_id,
         email_address: user.email_address,
         role: user.role
-      }, "SAML Response processed successfully")
-    })
+      }
+    }, "SAML Response processed successfully");
   } catch (err) {
     console.error('Error processing SAML Response:', err);
     return handleError(res, 500, 'Error processing the SAML Response')

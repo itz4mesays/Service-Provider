@@ -1,0 +1,9 @@
+Using JWT to track user session
+
+The IdP's responsibility ends at sending a valid SAML response. What your app does with the response (store in a session, convert to JWT, save in DB) is entirely up to your application logic.
+
+In short:
+
+IdP stays the same.
+
+You’re just changing how your app tracks the user’s session.

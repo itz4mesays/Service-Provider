@@ -111,7 +111,10 @@ const swaggerOptions = {
       {
         url: `http://localhost:${envVars.APP_PORT}`,
         description: 'Local Server'
-      },
+      }, {
+        url: `http://214.134.167.72.host.secureserver.net:${envVars.APP_PORT}`,
+        description: "Staging Server"
+      }
     ],
   },
   apis: ['./src/routes/*.ts'], // Path to your API files

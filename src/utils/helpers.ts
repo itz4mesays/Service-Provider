@@ -1,6 +1,16 @@
-import { Response, Request } from 'express';
+import { Response, Request, NextFunction } from 'express';
 import crypto from 'crypto'
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
+import { JwtPayload } from './types';
+import envVars from '../validations/validateEnv';
+import { handleError } from './responseHandler';
+import prisma from './client';
+import { User } from '@prisma/client';
+
+interface CustomRequest extends Request {
+    user?: User;
+}
 
 export const hashPassword = async (new_password: string, saltVaue: number): Promise<string> => {
     // Hash the new password
@@ -141,3 +151,61 @@ export const sanitizePem = (pem: string): string => {
         .replace(/\n+/g, '\n')   // Remove empty lines
         + '\n';  // Ensure trailing newline
 }
+
+export const signJwt = async (user: JwtPayload) => {
+    return jwt.sign(
+        {
+            id: user.tax_id,
+            email_address: user.email_address,
+            tax_id: user.tax_id,
+            role: user.role,
+            nameid: user.nameid
+        },
+        envVars.JWT_SECRET as string, // use a secure env-based secret
+        { expiresIn: envVars.JWT_EXPIRY } // token expiration time
+    )
+}
+
+export const jwtVerify = async (req: CustomRequest, res: Response, next: NextFunction) => {
+    const referer = req.headers['referer'] || '';
+    const authorizationHeader = req.headers['authorization'];
+
+    if (referer.includes('api-docs')) {
+        // This is for requests coming from Swagger UI
+        next();
+    } else {
+        if (!authorizationHeader) {
+            return handleError(res, 401, "Missing bearer token from the header")
+        } else {
+            const tokenParts = authorizationHeader.split('Bearer');
+            if (tokenParts.length !== 2) {
+                return handleError(res, 400, "Invalid authorization header format.")
+            }
+            const token = tokenParts[1].trim();
+
+            try {
+                const isTokenRevoked = await prisma.blackListedToken.findFirst({
+                    where: { token }
+                })
+
+                if (isTokenRevoked) {
+                    return handleError(res, 401, "Session expired. Please login again!")
+                }
+
+                jwt.verify(token, envVars.JWT_SECRET as string, (err, decoded) => {
+                    if (err) {
+                        return handleError(res, 401, "Session expired. Please login!")
+                    }
+                    req.user = decoded as User;
+
+                    console.log(`Decoded User`, req.user)
+
+                    next();
+                });
+            } catch (error) {
+                console.error('Error verifying token:', error);
+                return handleError(res, 500, "An error occured while processing your request")
+            }
+        }
+    }
+};

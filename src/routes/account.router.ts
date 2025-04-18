@@ -1,6 +1,6 @@
 import express, { Application, Request, Response, Router } from 'express'
 import ProfileController from '../controllers/AccountController';
-import { ensureAdmin } from '../middlewares/check.admin';
+import ensureAdmin from '../middlewares/check.admin';
 
 const router: Router = express.Router();
 const profileController = new ProfileController();
@@ -547,7 +547,7 @@ router.get('/manage-individuals', ensureAdmin, profileController.getAllIndividua
  *       500:
  *         description: Internal server error
  */
-router.get('/manage-individuals/single', profileController.getSingleIndividual)
+router.get('/manage-individuals/single', ensureAdmin, profileController.getSingleIndividual)
 
 
 export default router

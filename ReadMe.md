@@ -13,6 +13,7 @@ The Service Provider is the application or system that relies on the IdP for use
 - [What It Does](#what-it-does)
 - [Installation](#installation)
 - [Environment Variables](#environment-variables)
+- [Running Redis Server](#running-redis-server)
 - [Running Locally](#running-locally)
 - [Running Production](#running-production)
 - [API Documentation](#api-documentation)
@@ -57,6 +58,16 @@ cd into the project folder
 
 ```bash
 run npm install
+```
+
+---
+
+## Running redis server
+
+Starting the redis server, run 
+
+```bash
+redis-server &
 ```
 
 ---
