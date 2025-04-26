@@ -14,6 +14,20 @@ dotenv.config()
 const router: Router = express.Router();
 
 // Route to initiate the login process (SP)
+/**
+ * @swagger
+ * /saml/sp/login:
+ *   get:
+ *     summary: Initiates SAML auth flow
+ *     description: Starts the SAML authentication process for the Service Provider (SP).
+ *     tags: [Service Provider]
+ *     responses:
+ *       302:
+ *         description: Redirect to Identity Provider (IdP) login page
+ *       500:
+ *         description: Failed to initiate SAML authentication
+ */
+
 router.get('/sp/login', (req: Request, res: Response) => {
   // 1. Configure Identity Provider
   const idp = {
@@ -78,6 +92,24 @@ router.get('/sp/login', (req: Request, res: Response) => {
 });
 
 // Expose SP metadata
+/**
+ * @swagger
+ * /saml/sp/metadata:
+ *   get:
+ *     summary: Generate SAML SP Metadata
+ *     tags: [Service Provider]
+ *     description: Returns SAML Service Provider metadata for integration with Identity Providers.
+ *     responses:
+ *       200:
+ *         description: SAML metadata generated successfully
+ *         content:
+ *           application/xml:
+ *             schema:
+ *               type: string
+ *       500:
+ *         description: Internal server error
+ */
+
 router.get('/sp/metadata', (req: Request, res: Response) => {
   try {
     res.type('application/xml');
@@ -89,6 +121,43 @@ router.get('/sp/metadata', (req: Request, res: Response) => {
 });
 
 //Check Configuration
+/**
+ * @swagger
+ * /saml/sp/config-check:
+ *   get:
+ *     summary: Config Health Check
+ *     description: Check the configuration health of the Service Provider (SP).
+ *     tags:
+ *       - Service Provider
+ *     responses:
+ *       200:
+ *         description: Configuration is healthy
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: success
+ *                 message:
+ *                   type: string
+ *                   example: Configuration is valid
+ *       500:
+ *         description: Configuration error or server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: error
+ *                 message:
+ *                   type: string
+ *                   example: Invalid Service Provider configuration
+ */
+
 router.get('/sp/config-check', (req: Request, res: Response) => {
   res.json({
     spConfig: {
@@ -102,6 +171,36 @@ router.get('/sp/config-check', (req: Request, res: Response) => {
     }
   });
 });
+
+//logout
+/**
+ * @swagger
+ * /saml/sp/logout:
+ *   get:
+ *     summary: Log out
+ *     description: Log the user out of the service provider session.
+ *     tags: [Service Provider]
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Successfully logged out
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: "success"
+ *                 message:
+ *                   type: string
+ *                   example: "Logged out successfully."
+ *       401:
+ *         description: Unauthorized - Invalid or missing bearer token
+ *       500:
+ *         description: Internal server error
+ */
 
 router.get('/sp/logout', async (req: Request, res: Response) => {
   try {
@@ -117,6 +216,47 @@ router.get('/sp/logout', async (req: Request, res: Response) => {
     return handleError(res, 500, error)
   }
 });
+
+/**
+ * @swagger
+ * /saml/sp/acs:
+ *   post:
+ *     summary: Consumes SAML assertions from the IdP
+ *     tags: [Service Provider]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/x-www-form-urlencoded:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - SAMLResponse
+ *             properties:
+ *               SAMLResponse:
+ *                 type: string
+ *                 description: The base64-encoded SAML response from the Identity Provider (IdP)
+ *     responses:
+ *       200:
+ *         description: Assertion consumed successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                   example: success
+ *                 message:
+ *                   type: string
+ *                   example: Assertion processed
+ *                 data:
+ *                   type: object
+ *                   example: {}
+ *       400:
+ *         description: Bad Request (Invalid or missing SAMLResponse)
+ *       500:
+ *         description: Internal Server Error
+ */
 
 router.post('/sp/acs', express.urlencoded({ extended: true }), async (req: Request, res: Response) => {
   const { SAMLResponse, RelayState } = req.body;

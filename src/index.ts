@@ -13,7 +13,7 @@ import swaggerUi from 'swagger-ui-express'
 import swaggerJsdoc from 'swagger-jsdoc'
 import { RedisStore } from 'connect-redis';
 import { createClient } from 'redis';
-// import sessionMiddleware from './config/redisSessionStore'
+import { successResponse } from './utils/responseHandler'
 
 const app: Application = express();
 
@@ -121,6 +121,10 @@ const swaggerOptions = {
 };
 
 const swaggerSpecs = swaggerJsdoc(swaggerOptions);
+
+app.get('/', (req: Request, res: Response) => {
+  return successResponse(res, 200, {}, "Service Provider Service is up and running")
+})
 
 // Serve Swagger UI
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpecs, { explorer: true }));
